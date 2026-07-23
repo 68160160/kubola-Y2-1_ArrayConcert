@@ -1,36 +1,31 @@
 package view;
 
 import model.Customer;
-
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Class SeatForm
+ * หน้าที่: เลือกระบุโซนที่นั่ง และสุ่มหมายเลขที่นั่ง
+ */
 public class SeatForm extends JFrame {
 
     private Customer customer;
     private int concertIndex;
     private String showDate;
 
-    // Component
-    private JLabel titleLabel;
-    private JLabel zoneLabel;
-
-    private JLabel mapLabel;
-
+    private JLabel titleLabel, zoneLabel, mapLabel;
     private JComboBox<String> zoneBox;
-
     private JButton confirmButton;
     private String seatNumber;
     private int ticketPrice;
 
     public SeatForm(Customer customer, int concertIndex, String showDate) {
-
         this.customer = customer;
         this.concertIndex = concertIndex;
         this.showDate = showDate;
 
         setTitle("Seat Selection");
-        // ปรับขนาดหน้าต่างให้พอดีเนื้อหา
         setSize(600, 550);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,40 +33,29 @@ public class SeatForm extends JFrame {
         getContentPane().setBackground(Color.WHITE);
 
         createComponent();
-
-        registerEvent();
-
-        setVisible(true);
-
+        registerEvent();  
+        setVisible(true); 
     }
 
     private void createComponent() {
-
-        // หัวข้อเรื่อง จัดกึ่งกลางหน้าต่าง
         titleLabel = new JLabel("SELECT SEAT", SwingConstants.CENTER);
         titleLabel.setBounds(0, 20, 584, 40);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 28));
         add(titleLabel);
 
-        // รูปผังที่นั่ง
+        // แสดงรูปผังคอนเสิร์ต
         ImageIcon icon = new ImageIcon("src/Img/Stage.png");
-        Image img = icon.getImage().getScaledInstance(
-                420,
-                250,
-                Image.SCALE_SMOOTH
-        );
-
-        // จัดวางรูปภาพไว้ตรงกลาง (584 - 420) / 2 = 82
+        Image img = icon.getImage().getScaledInstance(420, 250, Image.SCALE_SMOOTH);
         mapLabel = new JLabel(new ImageIcon(img));
         mapLabel.setBounds(82, 70, 420, 250);
         add(mapLabel);
 
-        // ข้อความ Select Zone (จัดกึ่งกลาง)
         zoneLabel = new JLabel("Select Zone", SwingConstants.CENTER);
         zoneLabel.setBounds(0, 335, 584, 30);
         zoneLabel.setFont(new Font("Arial", Font.BOLD, 18));
         add(zoneLabel);
 
+        // [Array 1 มิติ] รายการโซนและราคาสำหรับใส่ใน JComboBox[cite: 1, 2]
         String[] zone = {
                 "VIP (20 Seats) - 5500 THB",
                 "A (40 Seats) - 4500 THB",
@@ -79,69 +63,50 @@ public class SeatForm extends JFrame {
                 "C (80 Seats) - 2500 THB"
         };
 
-        // กล่องเลือกโซน จัดกึ่งกลาง (584 - 280) / 2 = 152
         zoneBox = new JComboBox<>(zone);
         zoneBox.setBounds(152, 375, 280, 35);
         zoneBox.setFont(new Font("Arial", Font.PLAIN, 16));
         add(zoneBox);
 
-        // ปุ่ม Confirm จัดกึ่งกลาง (584 - 160) / 2 = 212
         confirmButton = new JButton("Confirm");
         confirmButton.setBounds(212, 430, 160, 42);
         confirmButton.setFont(new Font("Arial", Font.BOLD, 18));
         add(confirmButton);
-
     }
 
     private void registerEvent() {
-
         confirmButton.addActionListener(e -> {
-
             String selectedZone = (String) zoneBox.getSelectedItem();
+            String zoneName = selectedZone.split(" ")[0]; // ตัดเอาเฉพาะชื่อโซน เช่น "VIP"
 
-            String zone = selectedZone.split(" ")[0];
+            // สุ่มหมายเลขที่นั่ง
+            seatNumber = randomSeat(zoneName);
 
-            seatNumber = randomSeat(zone);
-
-            switch (zone) {
-
+            // ตรวจสอบราคาตามโซนที่เลือก
+            switch (zoneName) {
                 case "VIP":
                     ticketPrice = 5500;
                     break;
-
                 case "A":
                     ticketPrice = 4500;
                     break;
-
                 case "B":
                     ticketPrice = 3500;
                     break;
-
                 default:
                     ticketPrice = 2500;
-
+                    break;
             }
 
-            new TicketForm(
-                    customer,
-                    concertIndex,
-                    showDate,
-                    zone,
-                    seatNumber,
-                    ticketPrice
-            );
-
+            // เปิดหน้าออกตั๋ว TicketForm
+            new TicketForm(customer, concertIndex, showDate, zoneName, seatNumber, ticketPrice);
             dispose();
-
         });
-
     }
 
+    // ฟังก์ชันสุ่มหมายเลขที่นั่งในช่วง 1 - 20
     private String randomSeat(String zone) {
-
         int number = (int) (Math.random() * 20) + 1;
-
         return zone + "-" + String.format("%02d", number);
-
     }
 }
