@@ -55,7 +55,7 @@ public class SeatForm extends JFrame {
         zoneLabel.setFont(new Font("Arial", Font.BOLD, 18));
         add(zoneLabel);
 
-        // [Array 1 มิติ] รายการโซนและราคาสำหรับใส่ใน JComboBox[cite: 1, 2]
+        // [Array 1 มิติ] รายการโซนและราคาสำหรับใส่ใน JComboBox
         String[] zone = {
                 "VIP (20 Seats) - 5500 THB",
                 "A (40 Seats) - 4500 THB",

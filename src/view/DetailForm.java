@@ -6,7 +6,7 @@ import java.awt.*;
 
 /**
  * Class DetailForm
- * หน้าที่: แสดงรายละเอียดของคอนเสิร์ตที่เลือก โดยใช้อ้างอิงตำแหน่งด้วย concertIndex จาก Array[cite: 1, 2]
+ * หน้าที่: แสดงรายละเอียดของคอนเสิร์ตที่เลือก โดยใช้อ้างอิงตำแหน่งด้วย concertIndex จาก Array
  */
 public class DetailForm extends JFrame {
 
@@ -74,7 +74,7 @@ public class DetailForm extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 26));
         add(titleLabel);
 
-        // ดึงโปสเตอร์จาก Array โดยใช้อินเด็กซ์ imagePath[concertIndex][cite: 1, 2]
+        // ดึงโปสเตอร์จาก Array โดยใช้อินเด็กซ์ imagePath[concertIndex]
         ImageIcon icon = new ImageIcon(imagePath[concertIndex]);
         Image img = icon.getImage().getScaledInstance(230, 300, Image.SCALE_SMOOTH);
         posterLabel = new JLabel(new ImageIcon(img));
@@ -82,14 +82,14 @@ public class DetailForm extends JFrame {
         posterLabel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY, 1));
         add(posterLabel);
 
-        // ดึงชื่อคอนเสิร์ตจาก Array concertName[concertIndex][cite: 1, 2]
+        // ดึงชื่อคอนเสิร์ตจาก Array concertName[concertIndex]
         concertNameLabel = new JLabel("<html><body style='width: 280px;'>"
                 + concertName[concertIndex] + "</body></html>");
         concertNameLabel.setBounds(310, 80, 340, 50);
         concertNameLabel.setFont(new Font("Arial", Font.BOLD, 20));
         add(concertNameLabel);
 
-        // ดึงสถานที่จัดงานจาก Array concertPlace[concertIndex][cite: 1, 2]
+        // ดึงสถานที่จัดงานจาก Array concertPlace[concertIndex]
         placeLabel = new JLabel("<html><body style='width: 280px;'><b>Venue :</b>"
                 + concertPlace[concertIndex] + "</body></html>");
         placeLabel.setBounds(310, 135, 340, 45);
@@ -103,10 +103,10 @@ public class DetailForm extends JFrame {
 
         group = new ButtonGroup();
 
-        // [จุดเน้น] ตรวจสอบความยาวของ Array 2 มิติ (concertDate[concertIndex].length)[cite: 1, 2]
+        // [จุดเน้น] ตรวจสอบความยาวของ Array 2 มิติ (concertDate[concertIndex].length)
         // เพื่อเช็คว่าคอนเสิร์ตนี้มี 1 หรือ 2 รอบการแสดง
         if (concertDate[concertIndex].length > 1) {
-            // กรณีมี 2 รอบการแสดง ดึงข้อมูล Array แถวที่ concertIndex คอลัมน์ที่ 0 และ 1[cite: 1, 2]
+            // กรณีมี 2 รอบการแสดง ดึงข้อมูล Array แถวที่ concertIndex คอลัมน์ที่ 0 และ 1
             show1 = new JRadioButton("รอบที่ 1 " + concertDate[concertIndex][0]);
             show1.setBounds(310, 225, 340, 30);
             show1.setFont(new Font("Tahoma", Font.PLAIN, 14));
