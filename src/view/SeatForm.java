@@ -58,9 +58,9 @@ public class SeatForm extends JFrame {
         // [Array 1 มิติ] รายการโซนและราคาสำหรับใส่ใน JComboBox
         String[] zone = {
                 "VIP (20 Seats) - 5500 THB",
-                "A (40 Seats) - 4500 THB",
-                "B (60 Seats) - 3500 THB",
-                "C (80 Seats) - 2500 THB"
+                "A (50 Seats) - 4500 THB",
+                "B (80 Seats) - 3500 THB",
+                "C (120 Seats) - 2500 THB"
         };
 
         zoneBox = new JComboBox<>(zone);

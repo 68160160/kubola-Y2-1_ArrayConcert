@@ -17,7 +17,7 @@ public class TicketForm extends JFrame {
     private String seatNumber;
     private int price;
 
-    // [Array 1 มิติ] อ้างอิงชื่อและสถานที่จัดแสดงจาก Index[cite: 1, 2]
+    // [Array 1 มิติ] อ้างอิงชื่อและสถานที่จัดแสดงจาก Index
     private String[] concertName = {
             "Natori ONE-MAN LIVE TOUR",
             "Blush Blossom Fan Fest 2026",
@@ -79,7 +79,7 @@ public class TicketForm extends JFrame {
         customerLabel.setFont(new Font("Arial", Font.PLAIN, 18));
         ticketPanel.add(customerLabel);
 
-        // แสดงชื่อคอนเสิร์ต โดยดึงจาก Array ตาม concertIndex[cite: 1, 2]
+        // แสดงชื่อคอนเสิร์ต โดยดึงจาก Array ตาม concertIndex
         concertLabel = new JLabel("Concert: " + concertName[concertIndex]);
         concertLabel.setBounds(30, 70, 480, 30);
         concertLabel.setFont(new Font("Arial", Font.PLAIN, 18));

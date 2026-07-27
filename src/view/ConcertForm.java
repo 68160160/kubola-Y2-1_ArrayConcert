@@ -6,7 +6,7 @@ import java.awt.*;
 
 /**
  * Class ConcertForm
- * หน้าที่: แสดงรายการคอนเสิร์ตทั้งหมดให้เลือก โดยใช้ Array ในการวนลูปสร้าง GUI Component แบบอัตโนมัติ[cite: 1, 2]
+ * หน้าที่: แสดงรายการคอนเสิร์ตทั้งหมดให้เลือก โดยใช้ Array ในการวนลูปสร้าง GUI Component แบบอัตโนมัติ
  */
 public class ConcertForm extends JFrame {
 
@@ -57,7 +57,7 @@ public class ConcertForm extends JFrame {
         int startX = 31;
         int gap = 18;
 
-        // [จุดเน้นในการนำเสนอ] การใช้วงลูป For เข้าถึง Array เพื่อสร้างปุ่มคอนเสิร์ตแบบไดนามิก[cite: 1, 2]
+        // [จุดเน้นในการนำเสนอ] การใช้วงลูป For เข้าถึง Array เพื่อสร้างปุ่มคอนเสิร์ตแบบไดนามิก
         for (int i = 0; i < 5; i++) {
             int posX = startX + i * (150 + gap); // คำนวณตำแหน่ง X ของแต่ละคอนเสิร์ต
 
@@ -86,7 +86,7 @@ public class ConcertForm extends JFrame {
     }
 
     private void registerEvent() {
-        // วนลูปเพื่อผูก Event Listener ให้กับปุ่มทั้ง 5 ปุ่มใน Array[cite: 1, 2]
+        // วนลูปเพื่อผูก Event Listener ให้กับปุ่มทั้ง 5 ปุ่มใน Array
         for (int i = 0; i < 5; i++) {
             int index = i; // บันทึก Index ปัจจุบันไว้ใช้ใน Lambda Expression
             posterButton[i].addActionListener(e -> {
